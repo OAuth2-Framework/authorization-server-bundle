@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace OAuth2Framework\ServerBundle\Tests\TestBundle\Entity;
 
 use OAuth2Framework\Component\Core\UserAccount\UserAccount;
-use OAuth2Framework\Component\Core\UserAccount\UserAccountManager;
+use OAuth2Framework\Component\Core\UserAccount\UserAccountManager as UserAccountManagerInterface;
 
-class UserManager implements UserAccountManager
+class UserAccountManager implements UserAccountManagerInterface
 {
     /**
      * {@inheritdoc}

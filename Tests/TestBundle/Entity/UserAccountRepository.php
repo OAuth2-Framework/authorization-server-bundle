@@ -15,9 +15,9 @@ namespace OAuth2Framework\ServerBundle\Tests\TestBundle\Entity;
 
 use OAuth2Framework\Component\Core\UserAccount\UserAccount;
 use OAuth2Framework\Component\Core\UserAccount\UserAccountId;
-use OAuth2Framework\Component\Core\UserAccount\UserAccountRepository;
+use OAuth2Framework\Component\Core\UserAccount\UserAccountRepository as UserAccountRepositoryInterface;
 
-class UserRepository implements UserAccountRepository
+class UserAccountRepository implements UserAccountRepositoryInterface
 {
     private $usersByUsername = [];
 
