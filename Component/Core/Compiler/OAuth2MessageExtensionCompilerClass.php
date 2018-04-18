@@ -13,26 +13,26 @@ declare(strict_types=1);
 
 namespace OAuth2Framework\ServerBundle\Component\Core\Compiler;
 
-use OAuth2Framework\Component\Core\Response\OAuth2ResponseFactoryManager;
+use OAuth2Framework\Component\Core\Message\OAuth2MessageFactoryManager;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-class ResponseFactoryCompilerPass implements CompilerPassInterface
+final class OAuth2MessageExtensionCompilerClass implements CompilerPassInterface
 {
     /**
      * {@inheritdoc}
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition(OAuth2ResponseFactoryManager::class)) {
+        if (!$container->hasDefinition(OAuth2MessageFactoryManager::class)) {
             return;
         }
 
-        $definition = $container->getDefinition(OAuth2ResponseFactoryManager::class);
-        $taggedServices = $container->findTaggedServiceIds('oauth2_server_response_factory');
+        $client_manager = $container->getDefinition(OAuth2MessageFactoryManager::class);
+        $taggedServices = $container->findTaggedServiceIds('oauth2_message_extension');
         foreach ($taggedServices as $id => $attributes) {
-            $definition->addMethodCall('addResponseFactory', [new Reference($id)]);
+            $client_manager->addMethodCall('addExtension', [new Reference($id)]);
         }
     }
 }
