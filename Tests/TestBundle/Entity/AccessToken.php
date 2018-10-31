@@ -11,7 +11,9 @@ declare(strict_types=1);
  * of the MIT license.  See the LICENSE file for details.
  */
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+namespace OAuth2Framework\ServerBundle\Tests\TestBundle\Entity;
 
-return function (ContainerConfigurator $container) {
-};
+
+class AccessToken extends \OAuth2Framework\Component\Core\AccessToken\AccessToken
+{
+}
